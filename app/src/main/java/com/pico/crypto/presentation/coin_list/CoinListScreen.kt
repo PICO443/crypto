@@ -3,7 +3,6 @@ package com.pico.crypto.presentation.coin_list
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -26,7 +25,7 @@ fun CoinListScreen(
     viewModel: CoinListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
-    Box(modifier = modifier.fillMaxSize().wrapContentSize(Alignment.Center)) {
+    Box(modifier = modifier.fillMaxSize()) {
         LazyColumn() {
             items(state.value.data) { coin ->
                 CoinListItem(modifier = Modifier.padding(vertical = 16.dp),coin = coin, onCoinClick = {
@@ -35,7 +34,7 @@ fun CoinListScreen(
             }
         }
         if (state.value.isLoading) {
-            CircularProgressIndicator(modifier = Modifier)
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
         if (state.value.errorMessage.isNotBlank()) {
             Text(

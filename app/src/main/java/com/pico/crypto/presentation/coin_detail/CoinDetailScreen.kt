@@ -19,7 +19,7 @@ fun CoinDetailScreen(
     viewModel: CoinDetailViewModel = hiltViewModel()
 ) {
     val state = viewModel.state
-    Box(modifier = modifier.fillMaxSize().wrapContentSize(Alignment.Center)) {
+    Box(modifier = modifier.fillMaxSize()) {
         state.value.coin?.let { coin ->
             LazyColumn {
                 item {
@@ -67,7 +67,7 @@ fun CoinDetailScreen(
             }
         }
         if (state.value.isLoading) {
-            CircularProgressIndicator()
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
         if (state.value.errorMessage.isNotBlank()) {
             Text(
